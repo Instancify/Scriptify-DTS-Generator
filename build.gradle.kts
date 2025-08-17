@@ -19,8 +19,6 @@ repositories {
 
 dependencies {
     compileOnlyApi("com.instancify.scriptify:api:1.4.2-SNAPSHOT")
-    implementation("com.instancify.scriptify:script-js-graalvm:1.4.2-SNAPSHOT")
-    implementation("com.instancify.scriptify:common:1.4.2-SNAPSHOT")
     compileOnlyApi("org.projectlombok:lombok:1.18.36")
     annotationProcessor("org.projectlombok:lombok:1.18.36")
 }
@@ -29,7 +27,7 @@ publishing {
     publications {
         create<MavenPublication>("maven") {
             groupId = project.group.toString()
-            artifactId = project.name
+            artifactId = "generator"
             version = project.version.toString()
             from(components["java"])
         }
