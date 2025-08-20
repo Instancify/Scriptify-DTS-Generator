@@ -12,6 +12,15 @@ import java.nio.file.Path;
 public class ScriptTsProjectGenerator {
 
     /**
+     * JavaScript language.
+     */
+    public static final String JAVASCRIPT = "javascript";
+    /**
+     * TypeScript language.
+     */
+    public static final String TYPESCRIPT = "typescript";
+
+    /**
      * Script header comment.
      */
     private static final String SCRIPT_HEADER_COMMENT = """
@@ -45,6 +54,16 @@ public class ScriptTsProjectGenerator {
      * @param path Path of generated project
      */
     public void generate(Path path) {
+        this.generate(path, JAVASCRIPT);
+    }
+
+    /**
+     * Generates TS projects with tsconfig with declarations support.
+     *s
+     * @param path Path of generated project
+     * @param language Scripting language (JavaScript and TypeScript supported)
+     */
+    public void generate(Path path, String language) {
         Path src = path.resolve("src");
 
         if (!path.toFile().exists()) {
@@ -54,10 +73,16 @@ public class ScriptTsProjectGenerator {
             }
         }
 
+        String extension = switch (language.toLowerCase()) {
+            case JAVASCRIPT -> "js";
+            case TYPESCRIPT -> "ts";
+            default -> throw new IllegalArgumentException("Unknown language " + language);
+        };
+
         String declaration = generator.generate();
         try {
             Files.writeString(src.resolve("types.d.ts"), declaration);
-            Files.writeString(src.resolve("script.js"), SCRIPT_HEADER_COMMENT);
+            Files.writeString(src.resolve("script." + extension), SCRIPT_HEADER_COMMENT);
             Files.writeString(path.resolve("tsconfig.json"), TYPE_SCRIPT_CONFIG);
         } catch (IOException e) {
             throw new RuntimeException(e);

@@ -13,7 +13,8 @@ generator.save(Path.of("types.d.ts"));
 Generate TypeScript (with JavaScript support) project with declarations
 ```java
 ScriptTsProjectGenerator generator = new ScriptTsProjectGenerator(script);
-generator.generate(Path.of("code"));
+generator.generate(Path.of("code"), ScriptTsProjectGenerator.TYPESCRIPT);
+// Your can also use ScriptTsProjectGenerator.JAVASCRIPT
 ```
 
 ## Maven
