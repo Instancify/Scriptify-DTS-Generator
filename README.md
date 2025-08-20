@@ -33,7 +33,7 @@ Adding dependency:
 <dependency>
     <groupId>com.instancify.scriptify.declaration</groupId>
     <artifactId>generator</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
 </dependency>
 ```
 
@@ -48,5 +48,5 @@ maven {
 
 Adding dependency:
 ```groovy
-implementation "com.instancify.scriptify.declaration:generator:1.0.0-SNAPSHOT"
+implementation "com.instancify.scriptify.declaration:generator:1.0.1-SNAPSHOT"
 ```
